@@ -14,3 +14,4 @@ Not Currently mobile friendly --> Will make it soon
 Upcoming features:
 * Ability to change the timeline within the url.
 * Ability to vary contents in the certificate based on parameters passed through URL
+* Creating an homepage which generates the url with name and time of ignorance--> which can be copied 
