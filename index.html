@@ -114,13 +114,13 @@
 </head>
 <body>
   <div id="certificate-container">
-    <div class="certificate-title">Certificate of Appreciation</div>
+    <div class="certificate-title">Certificate of Rejoicement</div>
     <div class="certificate-body">This certificate is proudly presented to</div>
     <div id="certificate-name" class="certificate-name">[Your Friend’s Name]</div>
     <div class="certificate-name-line"></div>
-    <div class="certificate-body">For being a remarkable friend who's missed for a whole month!</div>
+    <div class="certificate-body">For being a remarkable friend who's ignored me for a whole month!</div>
     <div id="certificate-token" class="certificate-token"></div>
-    <div class="certificate-bottom">issued by Abhiram NJ</div>
+    <div class="certificate-bottom">Issued by Abhiram NJ</div>
   </div>
 
   <button id="download-btn">Download Certificate</button>
@@ -136,11 +136,11 @@
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name') || 'Amazing Friend';
+    const name = urlParams.get('name') || 'Amazing odd Friend';
 
     document.getElementById('certificate-name').textContent = name;
 
-    const token = generateToken(12);
+    const token = generateToken(14);
     document.getElementById('certificate-token').textContent = `Certificate ID: ${token}`;
 
     document.getElementById('download-btn').addEventListener('click', () => {
