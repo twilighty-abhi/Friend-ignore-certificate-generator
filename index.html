@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friendship Overflow Certificate Generator</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+    }
+
+    #certificate-container {
+      position: relative;
+      width: 800px;
+      height: 600px;
+      background: #ffffff;
+      border: 5px solid #4CAF50;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Decorative Circles */
+    #certificate-container::before, #certificate-container::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: #4CAF50;
+      opacity: 0.1;
+    }
+
+    #certificate-container::before {
+      top: -50px;
+      left: -50px;
+    }
+
+    #certificate-container::after {
+      bottom: -50px;
+      right: -50px;
+    }
+
+    .certificate-title {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #4CAF50;
+      margin: 0;
+    }
+
+    .certificate-body {
+      font-size: 1.4em;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    .certificate-name {
+      font-size: 2em;
+      font-weight: bold;
+      color: #222;
+      margin: 10px 0 5px 0;
+    }
+
+    .certificate-name-line {
+      width: 50%;
+      height: 2px;
+      background-color: #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    .certificate-token {
+      font-size: 0.8em;
+      color: #777;
+      margin: 5px 0;
+    }
+
+    .certificate-bottom {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8em;
+      color: #777;
+    }
+
+    #download-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #download-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div id="certificate-container">
+    <div class="certificate-title">Certificate of Appreciation</div>
+    <div class="certificate-body">This certificate is proudly presented to</div>
+    <div id="certificate-name" class="certificate-name">[Your Friend’s Name]</div>
+    <div class="certificate-name-line"></div>
+    <div class="certificate-body">For being a remarkable friend who's missed for a whole month!</div>
+    <div id="certificate-token" class="certificate-token"></div>
+    <div class="certificate-bottom">issued by Abhiram NJ</div>
+  </div>
+
+  <button id="download-btn">Download Certificate</button>
+
+  <script>
+    function generateToken(length) {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let token = '';
+      for (let i = 0; i < length; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      return token;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name') || 'Amazing Friend';
+
+    document.getElementById('certificate-name').textContent = name;
+
+    const token = generateToken(12);
+    document.getElementById('certificate-token').textContent = `Certificate ID: ${token}`;
+
+    document.getElementById('download-btn').addEventListener('click', () => {
+      html2canvas(document.querySelector("#certificate-container")).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `${name}-Certificate.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
